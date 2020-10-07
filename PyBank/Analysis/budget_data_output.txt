@@ -1,0 +1,7 @@
+Financial Analysis
+---------------------------
+Total months: 86
+Profit/ Loss: {sum(total_profit_loss)}
+average: {round(sum(average)/len(average))}
+Greatest increase in profits: Feb-12 1926159
+Greatest decrease in profits: Sep-13 -2196167
