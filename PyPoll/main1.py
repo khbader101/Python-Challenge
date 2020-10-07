@@ -3,7 +3,7 @@ import csv
 
 election_csv = os.path.join("Resources", "election_data.csv")
 
-total_votes = 0 
+total_votes = []
 Khan = 0
 Correy = 0
 Li = 0
@@ -14,7 +14,7 @@ with open(election_csv) as csv_file:
     header = next(csvreader)
 
     for row in csvreader:
-        total_votes = total_votes + 1
+        total_votes.append(row)
 
         if row[2] == "Khan":
             Khan = Khan + 1
@@ -25,19 +25,21 @@ with open(election_csv) as csv_file:
         elif row[2] == "O'Tooley":
             OTooley = OTooley + 1
 
+length_total_votes = len(total_votes)
+Khan_Percentage = (Khan/length_total_votes)*100
+Correy_percentage = (Correy/length_total_votes)*100
+Li_percentage = (Li/length_total_votes)*100
+OTooley_percentage = (OTooley/length_total_votes)*100
 
-Khan_Percentage = (Khan/total_votes)*100
-Correy_percentage = (Correy/total_votes)*100
-Li_percentage = (Li/total_votes)*100
-OTooley_percentage = (OTooley/total_votes)*100
+winner_Votes = max([Khan, Correy, Li, OTooley])
+index = total_votes.index(winner_Votes)
 
-total = {"Candidates": ["Khan", "Correy", "Li", "O'Tooley"], "Votes": [Khan, Correy, Li, OTooley]}
 
 print("Election Results\n-------------------------")
-print(f"Total Votes: {str(total_votes)}\n-------------------------")
+print(f"Total Votes: {str(length_total_votes)}\n-------------------------")
 print(f"Khan: {Khan_Percentage:.3f}% ({Khan})")
 print(f"Corry: {Correy_percentage:.3f}% ({Correy})")
 print(f"Li: {Li_percentage:.3f}% ({Li})")
 print(f"O'Tooley: {OTooley_percentage:.3f}% ({OTooley})\n-------------------------")
-print(max(total))
-print(total)
+
+print(index)
